@@ -1,73 +1,368 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>新剩余价值理论</title>
+    <title>由G—W—G计算m：新剩余价值理论与检验</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
             line-height: 1.6;
-            max-width: 800px;
+            color: #333;
+            background-color: #f8f9fa;
+            max-width: 900px;
             margin: 0 auto;
             padding: 20px;
-            background-color: #f5f5f5;
         }
+        
+        /* 头部样式 */
         header {
-            background-color: #dc3545;
+            background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
             color: white;
-            padding: 20px;
-            border-radius: 5px;
-            margin-bottom: 20px;
+            padding: 2.5rem 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
+        
         h1 {
-            margin: 0;
+            font-size: 2.2rem;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+            text-align: center;
         }
-        .content {
-            background-color: white;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        
+        .formula {
+            font-family: 'Cambria', 'Times New Roman', serif;
+            letter-spacing: 1px;
+            color: #f8c471;
+            font-size: 1.8rem;
         }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* 目录样式 */
+        .toc-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #f0f0f0;
+            font-size: 1.6rem;
+        }
+        
+        h3 {
+            color: #444;
+            margin: 1.5rem 0 0.8rem;
+            font-size: 1.3rem;
+        }
+        
+        h4 {
+            color: #666;
+            margin: 1rem 0 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .toc-list {
+            list-style: none;
+            margin-left: 0;
+        }
+        
+        .toc-list li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+        
+        .toc-list li:before {
+            content: "▪";
+            color: #e74c3c;
+            position: absolute;
+            left: 0;
+        }
+        
+        .toc-sublist {
+            list-style: none;
+            margin: 0.5rem 0 0.5rem 1.5rem;
+        }
+        
+        .toc-sublist li {
+            margin-bottom: 0.4rem;
+            font-size: 0.95rem;
+        }
+        
+        .toc-subsublist {
+            list-style: none;
+            margin: 0.3rem 0 0.3rem 2rem;
+        }
+        
+        .toc-subsublist li {
+            margin-bottom: 0.3rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        /* 研究体系样式 */
+        .research-system {
+            background: #f1f8ff;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid #3498db;
+        }
+        
+        .system-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        
+        .system-number {
+            background: #3498db;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+        
+        /* 数学公式样式 */
+        .math-formula {
+            text-align: center;
+            padding: 1.2rem;
+            background: #f8f9fa;
+            border-radius: 6px;
+            margin: 1.5rem 0;
+            font-family: 'Cambria', 'Times New Roman', serif;
+            font-size: 1.3rem;
+            border: 1px solid #e9ecef;
+        }
+        
+        /* 标识区样式 */
+        .identity-badge {
+            background: #fff8e1;
+            border-radius: 6px;
+            padding: 1.2rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid #f1c40f;
+        }
+        
+        .identity-badge p {
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+        
+        /* 链接样式 */
+        a {
+            color: #2980b9;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        a:hover {
+            color: #1a5276;
+            text-decoration: underline;
+        }
+        
+        /* 页脚样式 */
         footer {
-            margin-top: 20px;
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #eee;
             text-align: center;
             color: #666;
-            font-size: 14px;
+            font-size: 0.9rem;
+        }
+        
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .formula {
+                font-size: 1.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .toc-section {
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
-<header>
-    <h1>由G—W—G计算 m</h1>
-    <p class="subtitle">
-        新剩余价值理论与检验
-    </p>
-</header>
+    <header>
+        <h1>资本总公式：<span class="formula">G-W-G</span>的数理体系与实证检验</h1>
+        <p class="subtitle">新剩余价值理论的系统构建 | 吴忠明 独立研究（始于1999年）</p>
+    </header>
     
-    <div class="content">
-        <h2>欢迎访问</h2>
-        <p>这里是 <strong>fkqbkfj4sn-hue</strong> 的GitHub Pages网站，致力于马克思主义政治经济学的长期研究。</p>
+    <section class="toc-section">
+        <h2>研究成果目录</h2>
         
-        <h3>研究方向</h3>
-        <ul>
-            <li>剩余价值理论</li>
-            <li>《资本论》自备的模型</li>
-            <li>无产阶级立场的政治经济学分析</li>
+        <div class="research-system">
+            <div class="system-item">
+                <div class="system-number">0</div>
+                <div>题目与摘要</div>
+            </div>
+            <div class="system-item">
+                <div class="system-number">一</div>
+                <div>文献回顾</div>
+            </div>
+            <div class="system-item">
+                <div class="system-number">二</div>
+                <div>资本的生产过程</div>
+            </div>
+        </div>
+        
+        <ul class="toc-list">
+            <li>0. 题目与摘要</li>
+            <li>一、文献回顾</li>
+            <li>二、资本的生产过程
+                <ul class="toc-sublist">
+                    <li>（一）价值只是无差别的人类劳动的单纯凝结
+                        <ul class="toc-subsublist">
+                            <li>1. 活劳动的自乘运算</li>
+                            <li>2. 劳动创造价值和使用价值</li>
+                        </ul>
+                    </li>
+                    <li>（二）货币转化为资本</li>
+                    <li>（三）劳动过程和价值增殖过程
+                        <ul class="toc-subsublist">
+                            <li>1. 劳动过程</li>
+                            <li>2. 价值增殖过程</li>
+                            <li>3. 剩余价值率</li>
+                        </ul>
+                    </li>
+                    <li>（四）利润率趋向下降的规律
+                        <ul class="toc-subsublist">
+                            <li>1. 总公式和数学方程</li>
+                            <li>2. 两类劳动相互作用
+                                <ul class="toc-subsublist">
+                                    <li>（1）物化劳动对活劳动的减缩效应</li>
+                                    <li>（2）活劳动对物化劳动的增缩效应</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>三、商品生产所有权规律转变为资本主义占有规律
+                <ul class="toc-sublist">
+                    <li>（一）货币形式的起源</li>
+                    <li>（二）劳动过程和价值增殖过程
+                        <ul class="toc-subsublist">
+                            <li>1. 资本主义的三阶段占有</li>
+                            <li>2. 价值创造中的两类结构</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>四、劳动空间</li>
+            <li>五、数据检验
+                <ul class="toc-sublist">
+                    <li>（一）资本总公式</li>
+                    <li>（二）资本经济表</li>
+                    <li>（三）固定资本和流动资本</li>
+                    <li>（四）资本的结构比例</li>
+                    <li>（五）现代金融资本</li>
+                    <li>（六）无产阶级占有规律</li>
+                </ul>
+            </li>
+            <li>六、从实证回到理论</li>
+            <li>七、小结</li>
         </ul>
         
-        <h3>网站状态</h3>
-        <p>✅ GitHub Pages 已启用</p>
-        <p>🔄 网站建设中，更多内容即将添加...</p>
-    </div>
+        <div class="math-formula">
+            核心方程：G-W-G 的数学展开与剩余价值计算
+        </div>
+    </section>
+    
+    <section class="toc-section">
+        <h2>研究体系架构</h2>
+        
+        <h3>理论基础</h3>
+        <ul class="toc-sublist">
+            <li>从<span class="formula">G-W-G</span>出发的资本总公式分析</li>
+            <li>劳动价值论的数理表达</li>
+            <li>剩余价值率的精确计算模型</li>
+        </ul>
+        
+        <h3>数学模型</h3>
+        <ul class="toc-sublist">
+            <li>资本生产过程的动态系统</li>
+            <li>利润率趋向下降的规律方程</li>
+            <li>两类劳动相互作用的效应模型</li>
+        </ul>
+        
+        <h3>实证检验</h3>
+        <ul class="toc-sublist">
+            <li>资本经济表的实证分析</li>
+            <li>资本结构比例的统计检验</li>
+            <li>现代金融资本的数理特征</li>
+        </ul>
+        
+        <div class="identity-badge">
+            <p><strong>研究性质：</strong>独立理论研究（非机构附属）</p>
+            <p><strong>时间跨度：</strong>1999年至今（长期系统性研究）</p>
+            <p><strong>方法论：</strong>马克思主义框架下的数理建模与实证检验</p>
+            <p><strong>核心创新：</strong>对资本总公式<span class="formula">G-W-G</span>的完整数理重构</p>
+        </div>
+    </section>
+    
+    <section class="toc-section">
+        <h2>核心章节概述</h2>
+        
+        <h3>第二章：资本的生产过程</h3>
+        <p>建立资本总公式<span class="formula">G-W-G</span>的完整数学模型，包括价值增殖过程的形式化表达、剩余价值率的计算方法、以及利润率下降规律的数学证明。</p>
+        
+        <h3>第五章：数据检验</h3>
+        <p>对理论模型进行全面的实证检验，包括资本经济表的实际数据分析、资本结构比例的统计验证、现代金融资本运行规律的实证研究。</p>
+        
+        <h3>第六章：从实证回到理论</h3>
+        <p>基于实证结果对理论模型进行修正和完善，实现理论与实证的辩证统一。</p>
+    </section>
     
     <footer>
-        <p>© 1999–2026 吴忠明. 遵循马克思主义科学精神。</p>
-        <p>理论起点：马克思《资本论》· 方法工具：数学与大数据 · 目标：真理的精确表达</p>
-        <p>网站：<a href="https://fkqbkfj4sn-hue.github.io">fkqbkfj4sn-hue.github.io</a> | 
-           仓库：<a href="https://github.com/fkqbkfj4sn-hue/fkqbkfj4sn-hue.github.io">GitHub</a></p>
+        <p>© 1999–2026 吴忠明. 马克思主义政治经济学独立研究.</p>
+        <p>理论根基：马克思《资本论》 | 研究方法：数理建模与实证分析 | 学术立场：无产阶级科学立场</p>
+        <p>网站：<a href="https://fkqbkfj4sn-hue.github.io">fkqbkfj4sn-hue.github.io</a></p>
         <p style="margin-top: 1rem; font-size: 0.85rem; color: #888;">
-            真理是简单的，但通往真理的道路需要复杂的计算。
+            本网站呈现一项持续26年的独立研究成果：对资本总公式的数学重构与实证检验。
         </p>
     </footer>
 </body>
