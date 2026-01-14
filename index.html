@@ -38,6 +38,13 @@
             text-align: center;
         }
         
+        /* 新增样式：专门用于主标题中的公式 */
+        .title-formula {
+            font-family: 'Times New Roman', Times, serif; /* Times New Roman字体 */
+            font-weight: 400; /* 正常粗细，非加粗 */
+        }
+        
+        /* 原有的 .formula 样式保持不变，用于页面其他地方 */
         .formula {
             font-family: 'Cambria', 'Times New Roman', serif;
             letter-spacing: 1px;
@@ -51,6 +58,7 @@
             text-align: center;
             max-width: 800px;
             margin: 0 auto;
+            text-indent: 2em; /* 使用text-indent实现缩进 */
         }
         
         /* 目录样式 */
@@ -227,8 +235,10 @@
 </head>
 <body>
     <header>
-        <h1>由G—W—G计算m</h1>
-        <p class="subtitle">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;——新剩余价值理论与大数据检验 </p>
+        <!-- 修改在此处：为公式部分添加了 class="title-formula" -->
+        <h1>由<span class="title-formula">“G&nbsp;&nbsp;—&nbsp;&nbsp;W&nbsp;&nbsp;—&nbsp;&nbsp;G”</span>计算<span class="title-formula">m</span></h1>
+        <!-- 副标题已使用 text-indent 缩进 -->
+        <p class="subtitle">——新剩余价值理论与大数据检验</p>
     </header>
     
     <section class="toc-section">
