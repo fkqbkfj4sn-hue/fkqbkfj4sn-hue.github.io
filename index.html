@@ -2,319 +2,40 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>由&thinsp;“&thinsp;G&thinsp;—&thinsp;W&thinsp;—&thinsp;G&thinsp;”&thinsp;计算&thinsp;m</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f8f9fa;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        /* 头部样式 */
-        header {
-            background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
-            color: white;
-            padding: 2.5rem 2rem;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        }
-        
-        h1 {
-            font-size: 2.2rem;
-            margin-bottom: 0.8rem;
-            font-weight: 700;
-            text-align: center;
-        }
-       
-        /* 新增样式：专门用于主标题中的中文仿宋体 */
-        .chinese-text {
-            font-family: "FangSong", "仿宋", STFangSong, serif; /* 仿宋字体栈 */
-        }
-        
-        /* 新增样式：专门用于主标题中的公式 */
-        .title-formula {
-            font-family: 'Times New Roman', Times, serif; /* Times New Roman字体 */
-            font-weight: 400; /* 正常粗细，非加粗 */
-        }
-        
-        /* 原有的 .formula 样式保持不变，用于页面其他地方 */
-        .formula {
-            font-family: 'Cambria', 'Times New Roman', serif;
-            letter-spacing: 1px;
-            color: #f8c471;
-            font-size: 1.8rem;
-        }
-        
-        .subtitle {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-            text-indent: 2em; /* 使用text-indent实现缩进 */
-        }
-        
-        /* 目录样式 */
-        .toc-section {
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        }
-        
-        h2 {
-            color: #2c3e50;
-            margin-bottom: 1.2rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid #f0f0f0;
-            font-size: 1.6rem;
-        }
-        
-        h3 {
-            color: #444;
-            margin: 1.5rem 0 0.8rem;
-            font-size: 1.3rem;
-        }
-        
-        h4 {
-            color: #666;
-            margin: 1rem 0 0.5rem;
-            font-size: 1.1rem;
-        }
-        
-        .toc-list {
-            list-style: none;
-            margin-left: 0;
-        }
-        
-        .toc-list li {
-            margin-bottom: 0.8rem;
-            padding-left: 1.2rem;
-            position: relative;
-        }
-        
-        .toc-list li:before {
-            content: "▪";
-            color: #e74c3c;
-            position: absolute;
-            left: 0;
-        }
-        
-        .toc-sublist {
-            list-style: none;
-            margin: 0.5rem 0 0.5rem 1.5rem;
-        }
-        
-        .toc-sublist li {
-            margin-bottom: 0.4rem;
-            font-size: 0.95rem;
-        }
-        
-        .toc-subsublist {
-            list-style: none;
-            margin: 0.3rem 0 0.3rem 2rem;
-        }
-        
-        .toc-subsublist li {
-            margin-bottom: 0.3rem;
-            font-size: 0.9rem;
-            color: #666;
-        }
-        
-        /* 研究体系样式 */
-        .research-system {
-            background: #f1f8ff;
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-            border-left: 4px solid #3498db;
-        }
-        
-        .system-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 1rem;
-        }
-        
-        .system-number {
-            background: #3498db;
-            color: white;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 10px;
-            flex-shrink: 0;
-        }
-        
-        /* 数学公式样式 */
-        .math-formula {
-            text-align: center;
-            padding: 1.2rem;
-            background: #f8f9fa;
-            border-radius: 6px;
-            margin: 1.5rem 0;
-            font-family: 'Cambria', 'Times New Roman', serif;
-            font-size: 1.3rem;
-            border: 1px solid #e9ecef;
-        }
-        
-        /* 标识区样式 */
-        .identity-badge {
-            background: #fff8e1;
-            border-radius: 6px;
-            padding: 1.2rem;
-            margin: 1.5rem 0;
-            border-left: 4px solid #f1c40f;
-        }
-        
-        .identity-badge p {
-            margin-bottom: 0.5rem;
-            font-size: 0.95rem;
-        }
-        
-        /* 链接样式 */
-        a {
-            color: #2980b9;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-        
-        a:hover {
-            color: #1a5276;
-            text-decoration: underline;
-        }
-        
-        /* 页脚样式 */
-        footer {
-            margin-top: 2.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid #eee;
-            text-align: center;
-            color: #666;
-            font-size: 0.9rem;
-        }
-        
-        footer p {
-            margin-bottom: 0.5rem;
-        }
-        
-        /* 响应式设计 */
-        @media (max-width: 768px) {
-            body {
-                padding: 15px;
-            }
-            
-            h1 {
-                font-size: 1.8rem;
-            }
-            
-            .formula {
-                font-size: 1.5rem;
-            }
-            
-            .subtitle {
-                font-size: 1rem;
-            }
-            
-            .toc-section {
-                padding: 1.5rem;
-            }
-        }
-    </style>
+    <title>吴忠明 - 政治经济学独立研究者</title>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     <header>
-        <!-- 修改在此处：为公式部分添加了 class="title-formula" -->       
-        <h1><span class="chinese-text">由</span><span class="title-formula">&thinsp;“&thinsp;G&thinsp;—&thinsp;W&thinsp;—&thinsp;G&thinsp;”&thinsp;</span><span class="chinese-text">计算&thinsp;</span><span class="title-formula">m</span></h1>
-        <!-- 副标题已使用 text-indent 缩进 -->
-        <p class="subtitle">——新剩余价值理论与大数据检验</p>
+        <h1>吴忠明 (Wu Zhongming)</h1>
+        <p>政治经济学独立研究员 · 专注于剩余价值理论的创新</p>
+        <nav>
+            <a href="index.html">首页</a> | 
+            <a href="journey.html">研究历程</a> | 
+            <a href="research.html">研究成果</a> | 
+            <a href="about.html">关于我</a>
+        </nav>
     </header>
-    
-    <section class="toc-section">
-        <h2>研究成果目录</h2>
-        
-        <ul class="toc-list">
-            <li>〇、题目与摘要</li>
-            <li>一、文献回顾</li>
-            <li>二、资本的生产过程
-                <ul class="toc-sublist">
-                    <li>（一）价值只是无差别的人类劳动的单纯凝结
-                        <ul class="toc-subsublist">
-                            <li>1. 活劳动的自乘运算</li>
-                            <li>2. 劳动创造价值和使用价值</li>
-                        </ul>
-                    </li>
-                    <li>（二）货币转化为资本</li>
-                    <li>（三）劳动过程和价值增殖过程
-                        <ul class="toc-subsublist">
-                            <li>1. 劳动过程</li>
-                            <li>2. 价值增殖过程</li>
-                            <li>3. 剩余价值率</li>
-                        </ul>
-                    </li>
-                    <li>（四）利润率趋向下降的规律
-                        <ul class="toc-subsublist">
-                            <li>1. 总公式和数学方程</li>
-                            <li>2. 两类劳动相互作用
-                                <ul class="toc-subsublist">
-                                    <li>（1）物化劳动对活劳动的减幅效应</li>
-                                    <li>（2）活劳动对物化劳动的增幅效应</li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li>三、商品生产所有权规律转变为资本主义占有规律
-                <ul class="toc-sublist">
-                    <li>（一）货币形式的起源</li>
-                    <li>（二）劳动过程和价值增殖过程
-                        <ul class="toc-subsublist">
-                            <li>1. 资本主义的三阶段占有</li>
-                            <li>2. 价值创造中的两类结构</li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li>四、劳动空间</li>
-            <li>五、数据检验
-                <ul class="toc-sublist">
-                    <li>（一）资本总公式</li>
-                    <li>（二）资本结构表</li>
-                    <li>（三）固定资本和流动资本</li>
-                    <li>（四）关于c、v、m的比例</li>
-                    <li>（五）现代金融资本</li>
-                    <li>（六）无产阶级占有规律</li>
-                </ul>
-            </li>
-            <li>六、从实证回到理论</li>
-            <li>七、小结</li>
-        </ul>
-        
-     
+    <main>
+        <section>
+            <h2>研究总览</h2>
+            <p>我是一名政治经济学的独立研究者。自2007年以来，我的工作经历了从超边际分析、数理政治经济学，到最终确立无产阶级立场并系统创新剩余价值理论的思想历程。</p>
+        </section>
+        <section>
+            <h2>核心项目</h2>
+            <ul>
+                <li><strong>📚 研究成果档案馆</strong>：存放已发表的关键文献。</li>
+                <li><strong>🔬 动态研究实验室</strong>：记录当前研究的全过程。</li>
+            </ul>
+            <p>（待您的两个核心仓库创建后，可在此添加链接）</p>
+        </section>
+        <section>
+            <h2>学术身份</h2>
+            <p><strong>ORCID iD:</strong> <a href="https://orcid.org/0009-0008-3161-1556">0009-0008-3161-1556</a></p>
+        </section>
+    </main>
     <footer>
-        <p>© 1999–2026 吴忠明. m理论研究之数字实验室.</p>
-        <p>理论根基：马克思《资本论》 | 研究工具：《资本论》中模型 | 学术立场：无产阶级科学立场</p>
-        <p>网站：<a href="https://fkqbkfj4sn-hue.github.io">fkqbkfj4sn-hue.github.io</a></p>
-        <p style="margin-top: 1rem; font-size: 0.85rem; color: #888;">
-            本网站呈现一项持续26年的独立研究成果：对非增非减资本总公式&thinsp;“&thinsp;G&thinsp;—&thinsp;W&thinsp;—&thinsp;G&thinsp;”&thinsp;的现代重构。
-        </p>
+        <p>© 2024 吴忠明. 本网站内容采用 <a href="LICENSE">CC BY-NC-ND 4.0</a> 许可证。</p>
     </footer>
 </body>
 </html>
