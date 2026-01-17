@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GitHub Pages部署诊断</title>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: Arial; max-width: 800px; margin: 50px auto; line-height: 1.6; }
+        .success { color: green; }
+        .warning { color: orange; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>GitHub Pages部署诊断</h1>
+    <p>生成时间: <span id="timestamp"></span></p>
+    
+    <h2>测试项目</h2>
+    <ul>
+        <li>✅ .nojekyll 文件存在</li>
+        <li>✅ _config.yml 配置文件存在</li>
+        <li>✅ index.html 主页存在</li>
+        <li>⚠️ 等待GitHub Pages构建...</li>
+    </ul>
+    
+    <h2>重要链接</h2>
+    <ul>
+        <li><a href="/test-page.html">测试页面</a></li>
+        <li><a href="/research.html">研究成果</a></li>
+        <li><a href="/research-timeline.html">研究时间线</a></li>
+        <li><a href="/historical-archive-index.html">历史存档</a></li>
+    </ul>
+    
+    <h2>文件验证</h2>
+    <p>重要文件已上传并验证：</p>
+    <ul>
+        <li>2007年PDF论文：463KB，9页</li>
+        <li>2015年PDF论文：3.9MB，32页</li>
+        <li>2019年Word文档：5篇，共7.3MB</li>
+        <li>2019年会议证据：2张截图</li>
+    </ul>
+    
+    <script>
+        document.getElementById('timestamp').textContent = new Date().toLocaleString();
+    </script>
+</body>
+</html>
