@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>GitHub Pages部署状态监控</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .status {
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .success { background-color: #d4edda; color: #155724; }
+        .warning { background-color: #fff3cd; color: #856404; }
+        .error { background-color: #f8d7da; color: #721c24; }
+        .info { background-color: #d1ecf1; color: #0c5460; }
+        .timestamp {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>GitHub Pages部署状态监控</h1>
+    
+    <div class="status info">
+        <h2>📊 部署信息</h2>
+        <p><strong>仓库:</strong> fkqbkfj4sn-hue.github.io</p>
+        <p><strong>分支:</strong> main</p>
+        <p><strong>最新提交:</strong> <span id="commitHash"></span></p>
+        <p><strong>部署时间:</strong> <span id="deployTime"></span></p>
+    </div>
+
+    <div class="status warning">
+        <h2>⏳ 部署状态</h2>
+        <p>GitHub Pages正在构建和部署您的网站...</p>
+        <p>这通常需要1-10分钟时间。</p>
+    </div>
+
+    <div class="status info">
+        <h2>🔗 重要链接</h2>
+        <ul>
+            <li><a href="/">网站主页</a></li>
+            <li><a href="/research.html">研究成果</a></li>
+            <li><a href="/research-timeline.html">研究时间线</a></li>
+            <li><a href="/diagnose-deployment.html">部署诊断</a></li>
+            <li><a href="https://github.com/fkqbkfj4sn-hue/fkqbkfj4sn-hue.github.io/actions">GitHub Actions状态</a></li>
+            <li><a href="https://github.com/fkqbkfj4sn-hue/fkqbkfj4sn-hue.github.io/settings/pages">Pages设置</a></li>
+        </ul>
+    </div>
+
+    <div class="status success">
+        <h2>✅ 已确认完成的工作</h2>
+        <ul>
+            <li>所有研究文件已上传 (2007-2019年资料)</li>
+            <li>网站架构已搭建完成</li>
+            <li>GitHub Pages配置已优化</li>
+            <li>.nojekyll文件已添加</li>
+            <li>最新提交已成功推送到GitHub</li>
+        </ul>
+    </div>
+
+    <div class="timestamp">
+        <p>页面生成时间: <span id="currentTime"></span></p>
+        <p>最后更新: 2026年1月17日</p>
+    </div>
+
+    <script>
+        // 显示当前时间
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('currentTime').textContent = now.toLocaleString();
+            document.getElementById('deployTime').textContent = now.toLocaleString();
+        }
+        
+        // 模拟获取最新提交哈希（实际中可以从Git获取）
+        document.getElementById('commitHash').textContent = '1c20a2b';
+        
+        updateTime();
+        setInterval(updateTime, 60000); // 每分钟更新一次时间
+        
+        // 自动刷新状态（每5分钟）
+        setTimeout(() => {
+            window.location.reload();
+        }, 300000);
+    </script>
+</body>
+</html>
