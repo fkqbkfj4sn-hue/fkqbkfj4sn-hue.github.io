@@ -6,21 +6,18 @@
 
 # 工作目录
 WORK_DIR="$(pwd)"
-echo "========================================"
-echo "       RESEARCH WORK - START"
-echo "========================================"
-echo ""
-echo "Starting auto-save system..."
-echo "Please keep this window open."
-echo "Press Ctrl+C in the Bash window to stop."
-echo ""
-echo "========================================"
-echo "🧠 科研工作自动保存系统启动"
-echo "========================================"
-echo "📁 工作目录: $WORK_DIR"
-echo "🔄 开始自动保存（每5分钟一次）..."
-echo "按 Ctrl+C 停止"
-echo "========================================"
+
+# 设置退出信号处理
+cleanup() {
+    echo "自动保存系统正在停止..."
+    # 清理PID文件（如果存在）
+    if [ -f ".research_auto_save.pid" ]; then
+        rm -f ".research_auto_save.pid"
+    fi
+    exit 0
+}
+
+trap cleanup INT TERM EXIT
 
 # 跨平台兼容的日期函数
 get_timestamp() {
@@ -52,23 +49,43 @@ auto_save() {
     
     # 获取时间戳
     timestamp=$(get_timestamp)
-    echo "⏰ 自动保存: $timestamp"
+    echo "[$(date +"%H:%M:%S")] ⏰ 自动保存..."
     
     # Git操作
     git add -A
     if git commit -m "自动保存: $timestamp" --allow-empty >/dev/null 2>&1; then
-        echo "✅ 保存成功"
+        echo "[$(date +"%H:%M:%S")] ✅ 保存成功"
     else
-        echo "📭 没有需要保存的更改"
+        # 没有需要保存的更改
+        echo -n "."
     fi
 }
 
-# 设置退出信号处理
-trap 'echo ""; echo "🛑 停止自动保存系统"; exit 0' INT
+# 主程序
+main() {
+    echo "========================================"
+    echo "       RESEARCH WORK - START"
+    echo "========================================"
+    echo ""
+    echo "Starting auto-save system..."
+    echo "Please keep this window open."
+    echo "Press Ctrl+C in the Bash window to stop."
+    echo ""
+    echo "========================================"
+    echo "🧠 科研工作自动保存系统启动"
+    echo "========================================"
+    echo "📁 工作目录: $WORK_DIR"
+    echo "🔄 开始自动保存（每5分钟一次）..."
+    echo "按 Ctrl+C 停止"
+    echo "========================================"
+    
+    # 主循环
+    while true; do
+        auto_save
+        # 等待5分钟（300秒）
+        sleep 300
+    done
+}
 
-# 主循环
-while true; do
-    auto_save
-    # 等待5分钟（300秒）
-    sleep 300
-done
+# 运行主程序
+main
