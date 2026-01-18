@@ -8,8 +8,12 @@
 echo "========================================"
 echo "🌅 科研工作开始"
 echo "========================================"
-echo "开始时间: $(date +"%Y-%m-%d %H:%M:%S")"
+echo "开始时间: $(date +'%Y-%m-%d %H:%M:%S')"
 echo "========================================"
+
+# 设置工作目录（防止路径问题）
+WORK_DIR="$(pwd)"
+echo "工作目录: $WORK_DIR"
 
 # 创建进程ID文件
 PID_FILE=".research_auto_save.pid"
@@ -17,7 +21,7 @@ PID_FILE=".research_auto_save.pid"
 # 检查是否已经在运行
 if [ -f "$PID_FILE" ]; then
     OLD_PID=$(cat "$PID_FILE")
-    if kill -0 "$OLD_PID" 2>/dev/null; then
+    if ps -p "$OLD_PID" > /dev/null 2>&1; then
         echo "⚠️  自动保存系统已经在运行 (PID: $OLD_PID)"
         echo "如果要重启，请先运行: ./end-research.sh"
         exit 1
@@ -33,7 +37,9 @@ rm -f nul NUL 2>/dev/null
 
 # 启动自动保存脚本
 echo "🔄 启动自动保存系统..."
-./research-auto-save.sh &
+
+# 使用 nohup 确保脚本在后台运行
+nohup ./research-auto-save.sh > auto-save.log 2>&1 &
 AUTO_SAVE_PID=$!
 
 # 保存进程ID
@@ -41,13 +47,20 @@ echo $AUTO_SAVE_PID > "$PID_FILE"
 echo "✅ 自动保存系统已启动 (PID: $AUTO_SAVE_PID)"
 
 # 创建开始时间记录
-echo "$(date +"%Y-%m-%d %H:%M:%S")" > .research_start_time.txt
+date +'%Y-%m-%d %H:%M:%S' > .research_start_time.txt
 
 echo ""
 echo "📝 工作说明:"
 echo "1. 自动保存系统每5分钟自动提交一次"
 echo "2. 所有更改会保存到本地Git仓库"
-echo "3. 晚上结束时运行: ./end-research.sh"
+echo "3. 系统日志保存在: auto-save.log"
+echo "4. 晚上结束时运行: ./end-research.sh"
 echo ""
-echo "💡 提示: 保持此终端窗口打开"
+echo "💡 提示: 窗口会保持打开，可以最小化"
 echo "========================================"
+
+# 保持脚本运行，直到用户按任意键
+read -p "按回车键最小化窗口，或按 Ctrl+C 停止..." -n 1 -s
+echo ""
+echo "✅ 系统已在后台运行"
+echo ""
