@@ -324,3 +324,22 @@ TSWLatexianTemp*
 # option is specified. Footnotes are the stored in a file with suffix Notes.bib.
 # Uncomment the next line to have this generated file ignored.
 #*Notes.bib
+
+# Windows 特殊设备文件
+nul
+NUL
+con
+aux
+prn
+com[1-9]
+lpt[1-9]
+
+# 备份文件
+*.bak
+*.backup.*
+*.tmp
+*.temp
+
+# 系统文件
+Thumbs.db
+.DS_Store

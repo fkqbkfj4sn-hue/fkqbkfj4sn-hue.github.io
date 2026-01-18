@@ -21,7 +21,7 @@ sed -i 's|基于可验证证据的完整学术研究历程存档（2007-2026）|
 echo ""
 echo "检查结果："
 echo "1. 研究概述中的'吴忠明教授'："
-if grep -q "吴忠明教授" index.html; then
+if grep -I -q "吴忠明教授" index.html; then
     echo "❌ 仍有残留"
 else
     echo "✅ 已移除"

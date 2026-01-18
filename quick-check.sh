@@ -3,7 +3,7 @@ echo "=== 快速检查修改结果 ==="
 echo ""
 echo "1. 检查所有文件标题是否包含新名称："
 for file in *.html; do
-    if grep -q "剩余劳动价值论之数字实验中心" "$file" 2>/dev/null; then
+    if grep -I -q "剩余劳动价值论之数字实验中心" "$file" 2>/dev/null; then
         echo "✅ $file: 包含新名称"
     else
         echo "⚠️  $file: 可能需要更新"
@@ -20,7 +20,7 @@ grep "本数字实验中心系统整理了关于剩余劳动价值论的完整�
 
 echo ""
 echo "3. 检查是否有旧名称残留："
-if grep -r "剩余劳动价值论研究数字中心" *.html 2>/dev/null; then
+if grep -rI "剩余劳动价值论研究数字中心" *.html 2>/dev/null; then
     echo "❌ 发现旧名称残留"
 else
     echo "✅ 未发现旧名称残留"
