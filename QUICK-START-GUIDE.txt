@@ -1,0 +1,21 @@
+快速开始指南
+=============
+
+1. 启动科研工作：
+   ./start-research.sh
+
+2. 停止工作：
+   按 Ctrl+C
+
+3. 检查系统状态：
+   ./test-research-system.sh
+
+4. 如果有问题：
+   - 删除nul文件：rm -f nul
+   - 运行监控：./monitor-special-files.sh
+
+5. Git操作：
+   - 查看状态：git status
+   - 推送更改：git push origin main
+
+注意：所有脚本都已修复，不会创建nul文件
