@@ -2,211 +2,570 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>剩余劳动价值论之数字实验中心</title>
-    <meta name="description" content="剩余劳动价值的完整研究历程与文件存档（2007-2026）">
+    <title>剩余劳动价值论数字实验中心</title>
+    <meta name="description" content="基于《资本论》与世界银行数据的实证研究平台（2007-2026）">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * { box-sizing: border-box; }
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #e74c3c;
+            --accent-color: #3498db;
+            --light-bg: #f8f9fa;
+            --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
+            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
             line-height: 1.6;
-            background-color: #f9f9f9;
             color: #333;
+            background-color: #fff;
+            overflow-x: hidden;
         }
-        header {
-            background: linear-gradient(135deg, #c0392b 0%, #8e44ad 100%);
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 头部样式 */
+        .header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1a2530 100%);
             color: white;
-            padding: 40px 30px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
         }
-        h1 {
-            margin: 0 0 10px 0;
-            font-size: 2.5em;
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
         }
+        
+        .site-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .site-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary-color);
+        }
+        
         .subtitle {
-            font-size: 1.2em;
+            font-size: 1.2rem;
             opacity: 0.9;
+            max-width: 800px;
+            margin-top: 1.5rem;
         }
-        nav {
+        
+        /* 导航栏 */
+        .navbar {
             background: white;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 20px 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
-        nav a {
-            margin-right: 20px;
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links a {
             text-decoration: none;
-            color: #c0392b;
-            font-weight: 600;
-            padding: 5px 10px;
+            color: var(--primary-color);
+            font-weight: 500;
+            padding: 0.5rem 1.2rem;
             border-radius: 4px;
-            transition: all 0.3s ease;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
-        nav a:hover {
-            background-color: #f8f9fa;
-            color: #8e44ad;
+        
+        .nav-links a:hover {
+            background-color: var(--light-bg);
+            color: var(--secondary-color);
         }
+        
+        .nav-links a.active {
+            background-color: rgba(231, 76, 60, 0.1);
+            color: var(--secondary-color);
+        }
+        
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            color: var(--secondary-color);
+        }
+        
+        /* 主要内容区域 */
         .main-content {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 0.8rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--secondary-color);
+        }
+        
+        /* 研究概述卡片 */
+        .overview-card {
             background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 3rem;
+            border-left: 5px solid var(--accent-color);
         }
-        .timeline-container {
-            background: linear-gradient(to right, #f8f9fa, #e9ecef);
-            padding: 25px;
-            border-radius: 8px;
-            margin: 25px 0;
-            border-left: 5px solid #c0392b;
+        
+        .overview-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
         }
-        .year-highlight {
-            color: #c0392b;
-            font-weight: bold;
-            font-size: 1.1em;
+        
+        /* 研究成果网格 */
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
         }
-        .evidence-badge {
+        
+        .research-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .research-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-header {
+            padding: 1.8rem 1.8rem 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .card-year {
             display: inline-block;
-            background: #27ae60;
+            background: var(--secondary-color);
             color: white;
-            padding: 3px 10px;
+            padding: 0.3rem 1rem;
             border-radius: 20px;
-            font-size: 0.8em;
-            margin-left: 10px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
         }
-        footer {
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
+        
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            color: var(--primary-color);
+        }
+        
+        .card-body {
+            padding: 1rem 1.8rem 1.8rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card-description {
             color: #666;
-            font-size: 0.9em;
-            text-align: center;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
         }
-        .btn {
-            display: inline-block;
-            background: #c0392b;
+        
+        .card-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary-color);
             color: white;
-            padding: 12px 25px;
+            padding: 0.8rem 1.5rem;
             border-radius: 6px;
             text-decoration: none;
-            font-weight: bold;
-            margin: 10px 5px;
-            transition: background 0.3s ease;
+            font-weight: 500;
+            transition: var(--transition);
+            align-self: flex-start;
         }
-        .btn:hover {
-            background: #a93226;
+        
+        .card-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
         }
-        .btn-secondary {
-            background: #3498db;
+        
+        /* 颜色变体 */
+        .color-1 .card-year { background: #e74c3c; }
+        .color-2 .card-year { background: #3498db; }
+        .color-3 .card-year { background: #2ecc71; }
+        .color-4 .card-year { background: #9b59b6; }
+        
+        /* 页脚 */
+        .footer {
+            background: var(--primary-color);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 3rem 0 1.5rem;
+            margin-top: 3rem;
         }
-        .btn-secondary:hover {
-            background: #2980b9;
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
         }
+        
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: white;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.9rem;
+        }
+        
+        .status-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #2ecc71;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            .site-title {
+                font-size: 2.2rem;
+            }
+            
+            .research-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+        
         @media (max-width: 768px) {
-            body { padding: 15px; }
-           h1 { font-size: 2em; }
-            nav a { display: block; margin: 5px 0; }
+            .header {
+                padding: 3rem 0;
+            }
+            
+            .site-title {
+                font-size: 1.8rem;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .main-content {
+                padding: 2.5rem 0;
+            }
+            
+            .overview-card {
+                padding: 1.8rem;
+            }
         }
+        
+        @media (max-width: 576px) {
+            .research-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 0 15px;
+            }
+        }
+        
+        /* 动画效果 */
+        .fade-in {
+            animation: fadeIn 1s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .stagger-delay-1 { animation-delay: 0.1s; }
+        .stagger-delay-2 { animation-delay: 0.2s; }
+        .stagger-delay-3 { animation-delay: 0.3s; }
+        .stagger-delay-4 { animation-delay: 0.4s; }
     </style>
 </head>
 <body>
-    <header>
-        <h1>剩余劳动价值论之数字实验中心</h1>
-       <p class="subtitle">基于《资本论》模型与世界银行数据库的实证研究平台（2007-2026）</p>
+    <!-- 头部 -->
+    <header class="header">
+        <div class="container">
+            <h1 class="site-title fade-in">剩余劳动价值论数字实验中心</h1>
+            <p class="subtitle fade-in">基于《资本论》模型与世界银行数据库的实证研究平台（2007-2026）</p>
+        </div>
     </header>
 
-    <nav>
-        <a href="index.html">🏠 首页</a>
-        <a href="research.html">📚 科研历程</a>
-        <a href="deployment-status.html">⚙️ 部署状态</a>
-        <!-- 诊断页面链接已移除，仅内部使用 -->
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-flask"></i>
+                <span>数字实验中心</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active"><i class="fas fa-home"></i>首页</a></li>
+                <li><a href="research.html"><i class="fas fa-book-open"></i>科研历程</a></li>
+                <li><a href="deployment-status.html"><i class="fas fa-cogs"></i>部署状态</a></li>
+            </ul>
+        </div>
     </nav>
 
+    <!-- 主要内容 -->
     <main class="main-content">
-        <h2>🎯 研究概述</h2>
-        <p style="text-indent: 2em;">本数字实验中心系统培育、树立吴忠明——将劳动价值论和剩余价值论共同发展成剩余劳动价值论——的完整研究历程，大部分成果植根于无产阶级之唯一立场、马克思的零假设与链模型、现代大数据样本，旨在建立公开、透明、可验证的学术研究数字实验平台。</p>
-        
-       
+        <div class="container">
+            <!-- 研究概述 -->
+            <section class="fade-in">
+                <h2 class="section-title">研究概述</h2>
+                <div class="overview-card">
+                    <p class="overview-text">
+                        本数字实验中心系统培育、树立吴忠明——将劳动价值论和剩余价值论共同发展成剩余劳动价值论——的完整研究历程，大部分成果植根于无产阶级之唯一立场、马克思的零假设与链模型、现代大数据样本，旨在建立公开、透明、可验证的学术研究数字实验平台。
+                    </p>
+                </div>
+            </section>
 
-        <h2>🔬 核心研究成果</h2>
-    <div class="grid-container">
-
-    <div class="grid-item color-1">
-        <h3>2007年</h3>
-        <p><strong>农民经济组织研究</strong></p>
-        <p>第一篇正式发表的科研成果，开启科研道路。</p>
-        <a href="research.html#2007" class="btn">查看详情</a>
-    </div>
-    
-    <div class="grid-item color-2">
-        <h3>2015年</h3>
-        <p><strong>《资本论》图模型研究</strong></p>
-        <p>数理分析方法探索由马克思构建的链模型。</p>
-        <a href="research.html#2015" class="btn">查看详情</a>
-    </div>
-    
-    <div class="grid-item color-3">
-        <h3>2019年</h3>
-        <p><strong>新剩余价值论</strong></p>
-        <p>五篇系列论文初步创立理论体系。</p>
-        <a href="research.html#2019" class="btn">查看详情</a>
-    </div>
-    
-    <div class="grid-item color-4">
-        <h3>2025年</h3>
-        <p><strong>剩余劳动价值论</strong></p>
-        <p>一篇论文创立理论体系。</p>
-        <a href="research.html#2025" class="btn">查看详情</a>
-    </div>
-
-</div>
-
+            <!-- 核心研究成果 -->
+            <section class="fade-in">
+                <h2 class="section-title">核心研究成果</h2>
+                <div class="research-grid">
+                    <!-- 2007年 -->
+                    <div class="research-card color-1 fade-in stagger-delay-1">
+                        <div class="card-header">
+                            <span class="card-year">2007</span>
+                            <h3 class="card-title">农民经济组织研究</h3>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-description">第一篇正式发表的科研成果，开启科研道路，为后续研究奠定基础。</p>
+                            <a href="research.html#2007" class="card-btn">
+                                <i class="fas fa-arrow-right"></i> 查看详情
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- 2015年 -->
+                    <div class="research-card color-2 fade-in stagger-delay-2">
+                        <div class="card-header">
+                            <span class="card-year">2015</span>
+                            <h3 class="card-title">《资本论》图模型研究</h3>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-description">运用数理分析方法探索由马克思构建的链模型，深化对《资本论》的理解。</p>
+                            <a href="research.html#2015" class="card-btn">
+                                <i class="fas fa-arrow-right"></i> 查看详情
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- 2019年 -->
+                    <div class="research-card color-3 fade-in stagger-delay-3">
+                        <div class="card-header">
+                            <span class="card-year">2019</span>
+                            <h3 class="card-title">新剩余价值论</h3>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-description">五篇系列论文初步创立理论体系，为剩余劳动价值论的诞生提供关键基础。</p>
+                            <a href="research.html#2019" class="card-btn">
+                                <i class="fas fa-arrow-right"></i> 查看详情
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- 2025年 -->
+                    <div class="research-card color-4 fade-in stagger-delay-4">
+                        <div class="card-header">
+                            <span class="card-year">2025</span>
+                            <h3 class="card-title">剩余劳动价值论</h3>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-description">一篇论文创立完整理论体系，标志着劳动价值论与剩余价值论的融合发展。</p>
+                            <a href="research.html#2025" class="card-btn">
+                                <i class="fas fa-arrow-right"></i> 查看详情
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
     </main>
 
-    <footer>
-        <p>© 2007-2026 吴忠明 | 剩余劳动价值论之数字实验中心</p>
-        <p>网站状态：<a href="deployment-status.html" style="color: #3498db;">查看部署详情</a> | 
-           GitHub仓库：<a href="https://github.com/fkqbkfj4sn-hue/fkqbkfj4sn-hue.github.io" style="color: #3498db;">访问源代码</a></p>
-        <p style="font-size: 0.8em; color: #999; margin-top: 10px;">本数字实验中心使用GitHub Pages托管，所有内容永久存档于GitHub仓库</p>
-        
-        <!-- 添加的隐蔽入口 -->
-        <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee; font-size: 0.75em; color: #aaa;">
-            技术状态: <span id="site-status">● 正常</span> | 
-            内部工具: <a href="site-health-check.html" style="color: #bbb; text-decoration: none; font-family: monospace;">status</a>
-            | 更新时间: <span id="last-update">2026-01-18</span>
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-logo">剩余劳动价值论数字实验中心</div>
+                    <p>基于《资本论》模型与世界银行数据库的实证研究平台（2007-2026）</p>
+                    <div class="status-indicator">
+                        <span class="status-dot"></span>
+                        <span>网站状态：正常</span>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>快速链接</h4>
+                    <a href="index.html">首页</a>
+                    <a href="research.html">科研历程</a>
+                    <a href="deployment-status.html">部署状态</a>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>外部资源</h4>
+                    <a href="https://github.com/fkqbkfj4sn-hue/fkqbkfj4sn-hue.github.io">
+                        <i class="fab fa-github"></i> GitHub仓库
+                    </a>
+                    <a href="site-health-check.html">
+                        <i class="fas fa-tools"></i> 技术状态检查
+                    </a>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2007-2026 吴忠明 | 剩余劳动价值论数字实验中心</p>
+                <p style="margin-top: 10px; font-size: 0.85rem;">
+                    本数字实验中心使用GitHub Pages托管，所有内容永久存档于GitHub仓库
+                </p>
+                <p id="update-time" style="margin-top: 5px; font-size: 0.8rem;"></p>
+            </div>
         </div>
     </footer>
 
     <script>
-        // 简单的页面交互
+        // 页面加载时间显示
         document.addEventListener('DOMContentLoaded', function() {
-            // 更新最后访问时间
-            const lastVisit = document.createElement('p');
-            lastVisit.style.cssText = 'font-size:0.8em;color:#999;margin-top:5px;';
-            lastVisit.textContent = '页面加载时间: ' + new Date().toLocaleString();
-            document.querySelector('footer').appendChild(lastVisit);
+            const now = new Date();
+            const options = { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            };
+            document.getElementById('update-time').textContent = 
+                `页面更新时间: ${now.toLocaleDateString('zh-CN', options)}`;
             
-            // 添加平滑滚动
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    if(targetId !== '#') {
-                        const targetElement = document.querySelector(targetId);
-                        if(targetElement) {
-                            targetElement.scrollIntoView({ behavior: 'smooth' });
-                        }
+            // 滚动动画
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
                     }
                 });
-            });
+            }, observerOptions);
             
-            // 更新时间显示
-            document.getElementById('last-update').textContent = new Date().toLocaleDateString('zh-CN');
+            // 观察所有卡片
+            document.querySelectorAll('.research-card').forEach(card => {
+                observer.observe(card);
+            });
         });
     </script>
 </body>
