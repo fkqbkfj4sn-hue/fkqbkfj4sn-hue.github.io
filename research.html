@@ -8,12 +8,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #e74c3c;
-            --accent-color: #3498db;
-            --light-bg: #f8f9fa;
-            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            --primary-color: #3a4a5a;
+            --secondary-color: #c44536;
+            --accent-color: #4a90e2;
+            --light-bg: #f7f9fc;
+            --card-bg: rgba(255, 255, 255, 0.92);
+            --card-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
             --transition: all 0.3s ease;
+            
+            /* 护眼色系 */
+            --background-main: #f5f7f9;
+            --background-secondary: #eef2f5;
+            --background-card: rgba(255, 255, 255, 0.95);
+            --border-color: rgba(222, 226, 230, 0.6);
+            --text-primary: #3a4a5a;
+            --text-secondary: #6c757d;
+            --text-muted: #8a94a6;
         }
         
         * {
@@ -25,9 +35,11 @@
         body {
             font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
             line-height: 1.7;
-            color: #333;
-            background: #f9fafb;
+            color: var(--text-primary);
+            background: linear-gradient(135deg, var(--background-main) 0%, var(--background-secondary) 100%);
             min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
         
         .container {
@@ -36,14 +48,15 @@
             padding: 0 20px;
         }
         
-        /* 导航栏 - 简洁版 */
+        /* 导航栏 - 护眼色 */
         .navbar {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.92);
             backdrop-filter: blur(10px);
             position: sticky;
             top: 0;
             z-index: 100;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
         }
         
         .nav-container {
@@ -75,7 +88,7 @@
         
         .nav-links a {
             text-decoration: none;
-            color: var(--primary-color);
+            color: var(--text-primary);
             font-weight: 500;
             padding: 0.5rem 1rem;
             border-radius: 6px;
@@ -85,39 +98,37 @@
         
         .nav-links a:hover {
             color: var(--secondary-color);
-            background: rgba(231, 76, 60, 0.05);
+            background: rgba(196, 69, 54, 0.05);
         }
         
         .nav-links a.active {
             color: var(--secondary-color);
-            background: rgba(231, 76, 60, 0.08);
+            background: rgba(196, 69, 54, 0.08);
         }
         
-        /* 页面标题区域 - 简洁版 */
+        /* 页面标题区域 - 护眼色 */
         .page-header {
-            padding: 3rem 0 2rem;
+            padding: 3.5rem 0 2.5rem;
             text-align: center;
+            background: linear-gradient(to right, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.3));
+            backdrop-filter: blur(5px);
+            margin-bottom: 2rem;
+            border-bottom: 1px solid rgba(222, 226, 230, 0.3);
         }
         
         .page-title {
             font-size: 2.5rem;
             font-weight: 700;
-            color: var(--primary-color);
+            color: var(--text-primary);
             margin-bottom: 0.5rem;
             letter-spacing: -0.5px;
+            text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8);
         }
         
-        .page-subtitle {
-            font-size: 1rem;
-            color: #666;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        /* 年份导航 - 简洁版 */
+        /* 年份导航 - 护眼色 */
         .year-nav {
-            background: white;
-            border-radius: 10px;
+            background: var(--card-bg);
+            border-radius: 12px;
             padding: 1.2rem;
             margin-bottom: 2rem;
             box-shadow: var(--card-shadow);
@@ -125,22 +136,25 @@
             flex-wrap: wrap;
             justify-content: center;
             gap: 0.8rem;
+            border: 1px solid var(--border-color);
         }
         
         .year-nav-item {
             text-decoration: none;
-            color: var(--primary-color);
+            color: var(--text-primary);
             font-weight: 500;
             padding: 0.5rem 1.2rem;
             border-radius: 20px;
             transition: var(--transition);
-            border: 1px solid #e1e5e9;
+            border: 1px solid var(--border-color);
             font-size: 0.95rem;
+            background: rgba(255, 255, 255, 0.6);
         }
         
         .year-nav-item:hover {
             border-color: var(--secondary-color);
             color: var(--secondary-color);
+            background: rgba(196, 69, 54, 0.05);
             transform: translateY(-2px);
         }
         
@@ -148,16 +162,17 @@
             background: var(--secondary-color);
             color: white;
             border-color: var(--secondary-color);
+            box-shadow: 0 4px 10px rgba(196, 69, 54, 0.2);
         }
         
-        /* 研究成果时间线 - 简洁版 */
+        /* 研究成果时间线 - 护眼色 */
         .research-timeline {
             max-width: 900px;
             margin: 0 auto 3rem;
         }
         
         .timeline-item {
-            background: white;
+            background: var(--card-bg);
             border-radius: 12px;
             padding: 2rem;
             margin-bottom: 2rem;
@@ -165,10 +180,12 @@
             position: relative;
             border-left: 4px solid var(--secondary-color);
             transition: var(--transition);
+            border: 1px solid var(--border-color);
         }
         
         .timeline-item:hover {
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+            border-color: rgba(196, 69, 54, 0.2);
         }
         
         .year-badge {
@@ -177,7 +194,7 @@
             justify-content: center;
             width: 60px;
             height: 60px;
-            background: var(--secondary-color);
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #a83a2d 100%);
             color: white;
             font-size: 1.2rem;
             font-weight: 700;
@@ -185,20 +202,21 @@
             position: absolute;
             top: -20px;
             left: -30px;
-            box-shadow: 0 4px 12px rgba(231, 76, 60, 0.2);
+            box-shadow: 0 5px 15px rgba(196, 69, 54, 0.25);
             z-index: 1;
+            border: 3px solid var(--card-bg);
         }
         
         .research-title {
             font-size: 1.5rem;
             font-weight: 700;
-            color: var(--primary-color);
+            color: var(--text-primary);
             margin-bottom: 1rem;
             padding-left: 40px;
         }
         
         .research-description {
-            color: #555;
+            color: var(--text-secondary);
             margin-bottom: 1.5rem;
             font-size: 1.05rem;
             line-height: 1.8;
@@ -210,14 +228,14 @@
             gap: 0.8rem;
             margin-bottom: 1.5rem;
             padding-bottom: 1.5rem;
-            border-bottom: 1px solid #f0f0f0;
+            border-bottom: 1px solid var(--border-color);
         }
         
         .meta-tag {
             display: inline-flex;
             align-items: center;
             gap: 5px;
-            background: rgba(52, 152, 219, 0.08);
+            background: rgba(74, 144, 226, 0.08);
             color: var(--accent-color);
             padding: 0.3rem 0.8rem;
             border-radius: 20px;
@@ -229,7 +247,7 @@
             font-size: 0.8rem;
         }
         
-        /* 文件部分 - 简洁版 */
+        /* 文件部分 - 护眼色 */
         .files-section {
             margin-top: 1.5rem;
         }
@@ -237,7 +255,7 @@
         .section-title {
             font-size: 1.1rem;
             font-weight: 600;
-            color: var(--primary-color);
+            color: var(--text-primary);
             margin-bottom: 1rem;
             display: flex;
             align-items: center;
@@ -256,32 +274,35 @@
         }
         
         .file-card {
-            background: #f8f9fa;
+            background: rgba(247, 249, 252, 0.8);
             border-radius: 8px;
             padding: 1.2rem;
             transition: var(--transition);
             border-left: 3px solid var(--accent-color);
+            border: 1px solid rgba(222, 226, 230, 0.5);
         }
         
         .file-card:hover {
-            background: #eef2f7;
-            transform: translateY(-2px);
+            background: rgba(233, 236, 239, 0.8);
+            transform: translateY(-3px);
+            border-color: var(--accent-color);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
         
         .file-card h5 {
             font-size: 1rem;
             font-weight: 600;
-            color: var(--primary-color);
+            color: var(--text-primary);
             margin-bottom: 0.5rem;
         }
         
         .file-card p {
             font-size: 0.9rem;
-            color: #666;
+            color: var(--text-muted);
             margin-bottom: 0.8rem;
         }
         
-        /* 按钮样式 - 简洁版 */
+        /* 按钮样式 - 护眼色 */
         .btn-group {
             display: flex;
             flex-wrap: wrap;
@@ -299,6 +320,8 @@
             font-weight: 500;
             transition: var(--transition);
             font-size: 0.9rem;
+            border: none;
+            cursor: pointer;
         }
         
         .btn-primary {
@@ -307,7 +330,9 @@
         }
         
         .btn-primary:hover {
-            background: #2980b9;
+            background: #3a7bc8;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(74, 144, 226, 0.25);
         }
         
         .btn-secondary {
@@ -316,27 +341,31 @@
         }
         
         .btn-secondary:hover {
-            background: #c0392b;
+            background: #a83a2d;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(196, 69, 54, 0.25);
         }
         
         .btn-outline {
             background: transparent;
-            color: var(--primary-color);
-            border: 1px solid #ddd;
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
         }
         
         .btn-outline:hover {
-            background: rgba(52, 152, 219, 0.05);
+            background: rgba(74, 144, 226, 0.05);
             border-color: var(--accent-color);
             color: var(--accent-color);
+            transform: translateY(-2px);
         }
         
-        /* 页脚 - 简洁版 */
+        /* 页脚 - 护眼色 */
         .footer {
-            background: var(--primary-color);
-            color: rgba(255, 255, 255, 0.8);
+            background: linear-gradient(135deg, #2c3e50 0%, #1a2530 100%);
+            color: rgba(255, 255, 255, 0.85);
             padding: 2.5rem 0 1.5rem;
             margin-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
         
         .footer-content {
@@ -354,7 +383,7 @@
         }
         
         .footer-links a {
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.75);
             text-decoration: none;
             display: block;
             margin-bottom: 0.6rem;
@@ -364,6 +393,7 @@
         
         .footer-links a:hover {
             color: white;
+            padding-left: 5px;
         }
         
         .copyright {
@@ -372,21 +402,6 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             font-size: 0.85rem;
             color: rgba(255, 255, 255, 0.6);
-        }
-        
-        .status-indicator {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.9rem;
-        }
-        
-        .status-dot {
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #27ae60;
         }
         
         /* 响应式设计 */
@@ -404,6 +419,7 @@
                 top: 0;
                 left: 0;
                 margin-bottom: 1rem;
+                border: 3px solid var(--background-main);
             }
             
             .research-title {
@@ -478,19 +494,60 @@
         }
         
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
-        /* 简洁的分隔线 */
-        .divider {
-            height: 1px;
-            background: linear-gradient(to right, transparent, rgba(0,0,0,0.05), transparent);
-            margin: 2rem 0;
+        /* 护眼模式切换按钮 */
+        .eye-protection-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            z-index: 99;
+            transition: var(--transition);
+        }
+        
+        .eye-protection-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+        }
+        
+        .eye-protection-toggle i {
+            font-size: 1.2rem;
+            color: var(--text-primary);
+        }
+        
+        /* 护眼模式暗色主题 */
+        body.dark-eye-protection {
+            --background-main: #f0f5f9;
+            --background-secondary: #e6edf5;
+            --background-card: rgba(255, 255, 255, 0.98);
+            --border-color: rgba(206, 212, 218, 0.7);
+            --text-primary: #2c3e50;
+            --text-secondary: #5a6575;
+            --text-muted: #7a8898;
+            
+            background: linear-gradient(135deg, #f0f5f9 0%, #e6edf5 100%);
+            filter: brightness(0.98) contrast(1.05);
         }
     </style>
 </head>
 <body>
+    <!-- 护眼模式切换按钮 -->
+    <div class="eye-protection-toggle" id="eyeToggle">
+        <i class="fas fa-eye"></i>
+    </div>
+
     <!-- 简洁导航栏 -->
     <nav class="navbar">
         <div class="container nav-container">
@@ -522,7 +579,7 @@
             <a href="#2019" class="year-nav-item">2019</a>
         </div>
 
-        <!-- 简洁时间线 -->
+        <!-- 护眼色时间线 -->
         <div class="research-timeline">
             <!-- 2007年研究 -->
             <section id="2007" class="timeline-item fade-in">
@@ -630,7 +687,7 @@
             <div class="footer-content">
                 <div>
                     <div class="footer-logo">剩余劳动价值论数字实验中心</div>
-                    <p style="font-size: 0.9rem;">基于《资本论》模型与世界银行数据库的实证研究平台</p>
+                    <p style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.75);">基于《资本论》模型与世界银行数据库的实证研究平台</p>
                 </div>
                 
                 <div class="footer-links">
@@ -704,6 +761,42 @@
             const monthNames = ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"];
             const formattedDate = now.getFullYear() + '年' + monthNames[now.getMonth()];
             document.getElementById('update-date').textContent = formattedDate;
+            
+            // 护眼模式切换
+            const eyeToggle = document.getElementById('eyeToggle');
+            const eyeIcon = eyeToggle.querySelector('i');
+            
+            eyeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-eye-protection');
+                
+                if (document.body.classList.contains('dark-eye-protection')) {
+                    eyeIcon.className = 'fas fa-eye-slash';
+                    eyeToggle.title = '切换到明亮模式';
+                } else {
+                    eyeIcon.className = 'fas fa-eye';
+                    eyeToggle.title = '切换到护眼模式';
+                }
+                
+                // 保存用户偏好
+                localStorage.setItem('eyeProtectionMode', document.body.classList.contains('dark-eye-protection') ? 'dark' : 'light');
+            });
+            
+            // 加载保存的护眼模式设置
+            const savedMode = localStorage.getItem('eyeProtectionMode');
+            if (savedMode === 'dark') {
+                document.body.classList.add('dark-eye-protection');
+                eyeIcon.className = 'fas fa-eye-slash';
+                eyeToggle.title = '切换到明亮模式';
+            } else {
+                eyeToggle.title = '切换到护眼模式';
+            }
+            
+            // 添加键盘快捷键 (Alt+E 切换护眼模式)
+            document.addEventListener('keydown', function(e) {
+                if (e.altKey && e.key === 'e') {
+                    eyeToggle.click();
+                }
+            });
         });
     </script>
 </body>
