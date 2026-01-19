@@ -2,8 +2,8 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>学术足记 - 剩余劳动价值论数字实验中心</title>
-    <meta name="description" content="吴忠明教授2007-2026年完整研究成果档案">
+    <title>剩余劳动价值论之数字实验中心</title>
+    <meta name="description" content="吴忠明2007-2026年完整研究成果档案">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -24,6 +24,12 @@
             --text-primary: #3a4a5a;
             --text-secondary: #6c757d;
             --text-muted: #8a94a6;
+            
+            /* 1998年特殊色系 - 深蓝金色系 */
+            --special-color: #1a365d;
+            --special-accent: #d4af37;
+            --special-light: rgba(212, 175, 55, 0.08);
+            --special-gradient: linear-gradient(135deg, #1a365d 0%, #2d4a7c 100%);
         }
         
         * {
@@ -165,6 +171,36 @@
             box-shadow: 0 4px 10px rgba(196, 69, 54, 0.2);
         }
         
+        /* 1998年特殊导航项样式 */
+        .year-nav-item.special-year {
+            background: linear-gradient(135deg, #1a365d 0%, #2d4a7c 100%);
+            color: white;
+            border-color: #1a365d;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .year-nav-item.special-year::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .year-nav-item.special-year:hover::before {
+            left: 100%;
+        }
+        
+        .year-nav-item.special-year:hover {
+            border-color: #d4af37;
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 6px 15px rgba(26, 54, 93, 0.3);
+        }
+        
         /* 研究成果时间线 - 护眼色 */
         .research-timeline {
             max-width: 900px;
@@ -207,12 +243,90 @@
             border: 3px solid var(--card-bg);
         }
         
+        /* 1998年特殊徽章样式 */
+        .year-badge.special-badge {
+            background: linear-gradient(135deg, #1a365d 0%, #2d4a7c 100%);
+            box-shadow: 0 5px 15px rgba(26, 54, 93, 0.4);
+            border: 3px solid white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .year-badge.special-badge::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(212, 175, 55, 0.3) 0%,
+                rgba(212, 175, 55, 0.1) 20%,
+                transparent 40%,
+                transparent 60%,
+                rgba(212, 175, 55, 0.1) 80%,
+                rgba(212, 175, 55, 0.3) 100%
+            );
+            transform: rotate(45deg);
+            animation: shine 3s infinite linear;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+        
+        /* 1998年特殊卡片样式 */
+        .timeline-item.special-item {
+            border-left: 4px solid #d4af37;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            border-right: 1px solid rgba(212, 175, 55, 0.2);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.98), rgba(248, 249, 252, 0.95));
+            box-shadow: 0 10px 30px rgba(26, 54, 93, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .timeline-item.special-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #1a365d, #d4af37, #1a365d);
+            z-index: 1;
+        }
+        
+        .timeline-item.special-item:hover {
+            box-shadow: 0 15px 40px rgba(26, 54, 93, 0.15);
+            transform: translateY(-3px);
+            border-color: rgba(212, 175, 55, 0.5);
+        }
+        
         .research-title {
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--text-primary);
             margin-bottom: 1rem;
             padding-left: 40px;
+        }
+        
+        /* 1998年特殊标题样式 */
+        .special-item .research-title {
+            color: #1a365d;
+            font-size: 1.6rem;
+            position: relative;
+            padding-left: 50px;
+        }
+        
+        .special-item .research-title::before {
+            content: '🎓';
+            position: absolute;
+            left: 0;
+            font-size: 1.8rem;
         }
         
         .research-description {
@@ -222,6 +336,19 @@
             line-height: 1.8;
         }
         
+        /* 1998年特殊描述样式 */
+        .special-item .research-description {
+            color: #2d3748;
+            font-size: 1.1rem;
+            line-height: 1.9;
+            border-left: 3px solid rgba(212, 175, 55, 0.3);
+            padding-left: 15px;
+            margin-left: 10px;
+            background: rgba(212, 175, 55, 0.03);
+            padding: 1rem;
+            border-radius: 0 8px 8px 0;
+        }
+        
         .research-meta {
             display: flex;
             flex-wrap: wrap;
@@ -229,6 +356,11 @@
             margin-bottom: 1.5rem;
             padding-bottom: 1.5rem;
             border-bottom: 1px solid var(--border-color);
+        }
+        
+        /* 1998年特殊元数据样式 */
+        .special-item .research-meta {
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
         }
         
         .meta-tag {
@@ -241,6 +373,13 @@
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: 500;
+        }
+        
+        /* 1998年特殊标签样式 */
+        .special-item .meta-tag {
+            background: rgba(212, 175, 55, 0.1);
+            color: #1a365d;
+            border: 1px solid rgba(212, 175, 55, 0.3);
         }
         
         .meta-tag i {
@@ -289,11 +428,34 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
         
+        /* 1998年特殊文件卡片样式 */
+        .special-item .file-card {
+            background: rgba(212, 175, 55, 0.05);
+            border-left: 3px solid #1a365d;
+            border: 1px solid rgba(26, 54, 93, 0.1);
+        }
+        
+        .special-item .file-card:hover {
+            background: rgba(26, 54, 93, 0.05);
+            border-color: #1a365d;
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(26, 54, 93, 0.1);
+        }
+        
         .file-card h5 {
             font-size: 1rem;
             font-weight: 600;
             color: var(--text-primary);
             margin-bottom: 0.5rem;
+        }
+        
+        /* 1998年特殊文件标题样式 */
+        .special-item .file-card h5 {
+            color: #1a365d;
+        }
+        
+        .special-item .file-card h5 i {
+            color: #d4af37;
         }
         
         .file-card p {
@@ -359,6 +521,21 @@
             transform: translateY(-2px);
         }
         
+        /* 1998年特殊按钮样式 */
+        .special-item .btn-outline {
+            background: rgba(26, 54, 93, 0.05);
+            color: #1a365d;
+            border: 1px solid rgba(26, 54, 93, 0.3);
+        }
+        
+        .special-item .btn-outline:hover {
+            background: rgba(26, 54, 93, 0.1);
+            border-color: #1a365d;
+            color: #1a365d;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(26, 54, 93, 0.1);
+        }
+        
         /* 页脚 - 护眼色 */
         .footer {
             background: linear-gradient(135deg, #2c3e50 0%, #1a2530 100%);
@@ -422,8 +599,20 @@
                 border: 3px solid var(--background-main);
             }
             
+            .special-item .year-badge {
+                border: 3px solid white;
+            }
+            
             .research-title {
                 padding-left: 0;
+            }
+            
+            .special-item .research-title {
+                padding-left: 40px;
+            }
+            
+            .special-item .research-title::before {
+                left: -10px;
             }
         }
         
@@ -476,6 +665,10 @@
             
             .research-title {
                 font-size: 1.3rem;
+            }
+            
+            .special-item .research-title {
+                font-size: 1.4rem;
             }
             
             .btn-group {
@@ -540,6 +733,16 @@
             background: linear-gradient(135deg, #f0f5f9 0%, #e6edf5 100%);
             filter: brightness(0.98) contrast(1.05);
         }
+        
+        /* 特殊标志装饰 */
+        .special-decoration {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.2rem;
+            color: #d4af37;
+            opacity: 0.7;
+        }
     </style>
 </head>
 <body>
@@ -566,7 +769,7 @@
     <!-- 简洁页面标题 -->
     <header class="page-header fade-in">
         <div class="container">
-            <h1 class="page-title">学术足记</h1>
+            <h1 class="page-title">学术思想里程碑</h1>
         </div>
     </header>
 
@@ -574,19 +777,53 @@
     <main class="container">
         <!-- 简洁年份导航 -->
         <div class="year-nav fade-in">
-            <a href="#2007" class="year-nav-item active">2007</a>
+            <a href="#1998" class="year-nav-item special-year active">1998</a>
+            <a href="#2007" class="year-nav-item">2007</a>
             <a href="#2015" class="year-nav-item">2015</a>
             <a href="#2019" class="year-nav-item">2019</a>
         </div>
 
         <!-- 护眼色时间线 -->
         <div class="research-timeline">
+
+            <!-- 1998年研究 - 特殊样式 -->
+            <section id="1998" class="timeline-item special-item fade-in">
+                <div class="special-decoration">🔍</div>
+                <div class="year-badge special-badge">1998</div>
+                <h2 class="research-title">初步接触马克思</h2>
+                <p class="research-description">
+                    在本科研究生阶段（1998年至2002年）偶然发现了一本蓝色的小册书籍《1844年经济学哲学手稿》，对其中内容、文句表达等产生浓厚兴趣。这个偶然的发现，如同在知识海洋中拾获了一颗璀璨的珍珠，为后续二十余年的学术探索埋下了重要的思想种子。
+                </p>
+                
+                <div class="research-meta">
+                    <span class="meta-tag"><i class="fas fa-calendar-alt"></i> 1998年</span>
+                    <span class="meta-tag"><i class="fas fa-seedling"></i> 科研志向的发轫点</span>
+                    <span class="meta-tag"><i class="fas fa-lightbulb"></i> 思想启蒙</span>
+                </div>
+                
+                <div class="files-section">
+                    <h4 class="section-title"><i class="fas fa-book-open" style="color: #d4af37;"></i> 学术记忆</h4>
+                    <div class="file-grid">
+                        <div class="file-card">
+                            <h5><i class="fas fa-feather-alt"></i> 阅读心得</h5>
+                            <p>思想启蒙的历程记录与感悟</p>
+                            <a href="assets/milestones/m1998/阅读心得.md" target="_blank" class="btn btn-outline">查看</a>
+                        </div>
+                        <div class="file-card">
+                            <h5><i class="fas fa-history"></i> 思想轨迹</h5>
+                            <p>从接触到理解的转变过程</p>
+                            <a href="assets/milestones/m1998/思想轨迹.md" target="_blank" class="btn btn-outline">探索</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- 2007年研究 -->
             <section id="2007" class="timeline-item fade-in">
                 <div class="year-badge">2007</div>
                 <h2 class="research-title">农民经济组织研究</h2>
                 <p class="research-description">
-                    我的第一篇正式发表的科研成果，发表于《经济问题探索》，标志着科研道路的起点。本文探讨了农民经济组织形成的内生性机制与农户个体决策的互动关系。
+                    在硕士研究生阶段（2005年至2008年）发表《农户个体决策与农民经济组织的内生性——超边际视角下的农民经济组织》（华南农业大学学报（社会科学版）2007 年第 3 期），它反映科研工具从考研时选择的计量经济学升级到杨小凯教授创立的超边际理论，但分析问题的角度属于非无产阶级性质。
                 </p>
                 
                 <div class="research-meta">
@@ -617,7 +854,7 @@
                 <div class="year-badge">2015</div>
                 <h2 class="research-title">《资本论》图模型研究</h2>
                 <p class="research-description">
-                    首次系统尝试用现代数学方法分析马克思《资本论》中的理论模型，受到中国经济规律研究会第25届年会的重视。本文运用图论和计量分析方法，对《资本论》中的链模型进行了形式化表达与实证检验。
+                    将超边际理论的应用方向从农民经济组织转变至《资本论》，受到中国经济规律研究会第25届年会的重视，发表了《< 资本论 > 中图模型的现代数理分析和计量分析》（中国经济规律研究报告（2015），经济科学出版社）。
                 </p>
                 
                 <div class="research-meta">
@@ -647,9 +884,29 @@
             <section id="2019" class="timeline-item fade-in">
                 <div class="year-badge">2019</div>
                 <h2 class="research-title">新剩余价值论</h2>
-                <p class="research-description">
-                    五篇系列论文中的三篇被中国政治经济学学会第29届年会暨中国海派经济论坛第22次研讨会收录，受到高度重视，标志新剩余价值理论正式创立。该研究将无产阶级立场与现代大数据方法相结合，为劳动价值论的发展提供了新的分析框架。
-                </p>
+
+<p class="research-description">
+    2019年，在中华人民共和国成立70周年的历史节点，我向"中国马克思主义经济学：70年回顾与展望"中国政治经济学学会第29届年会暨中国海派经济论坛第22次研讨会（分两次）提交了五篇系列论文：
+    
+    <div style="margin: 1.2rem 0; padding: 1.2rem; background: rgba(255, 255, 255, 0.5); border-radius: 6px; border-left: 3px solid var(--accent-color);">
+        <strong style="color: var(--primary-color); display: block; margin-bottom: 0.8rem;">五篇系列论文：</strong>
+        <ol style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary); font-family: 'FangSong', '仿宋', serif; font-style: normal;">
+            <li style="margin-bottom: 0.5rem;">《商品二重性的算法和实证——以世界银行1960∼2017的货币数据为样本》</li>
+            <li style="margin-bottom: 0.5rem;">《资本的算法和实证——以世界银行1960∼2017资本形成总额数据为样本》</li>
+            <li style="margin-bottom: 0.5rem;">《中国基本经济制度的自生发展——以中国数理和中国数据为实证工具》</li>
+            <li style="margin-bottom: 0.5rem;">《无差别人类劳动的算法和实证——以世界银行的人口和使用价值数据为样本》</li>
+            <li style="margin-bottom: 0.5rem;">《中国农业生产有机体的一元性——以中国数理和中国数据为实证工具》</li>
+        </ol>
+    </div>
+    
+    <div style="margin: 1.5rem 0; font-style:normal; color: var(--text-secondary); padding: 1.2rem; background: rgba(255, 255, 255, 0.5); border-radius: 6px; border-left: 3px solid var(--secondary-color);">
+        其中前三篇论文受到大会重视和高度重视，但第五篇《中国农业生产有机体的一元性》被大会主席程恩富先生明确指出其非工人阶级立场。
+        
+        <div style="margin-top: 1rem; color: var(--primary-color); font-weight: 500;">
+            此学术反馈成为了我科研思想历程里最重要的觉醒点：思来想去，最后决定选择《资本论》中零假设（和创立零资本总公式与新零假设）来为现代无产阶级构建模型系统。
+        </div>
+    </div>
+</p>
                 
                 <div class="research-meta">
                     <span class="meta-tag"><i class="fas fa-calendar-alt"></i> 2019年</span>
@@ -667,7 +924,7 @@
                         </div>
                         <div class="file-card">
                             <h5><i class="fas fa-balance-scale"></i> Part 2 (1篇)</h5>
-                            <p>非无产阶级思想存在</p>
+                            <p>非无产阶级思想仍旧存在</p>
                             <a href="assets/documents/3-2019-初步创立新剩余价值理论/part2-非无产阶级思想仍旧存在/" target="_blank" class="btn btn-outline">浏览</a>
                         </div>
                         <div class="file-card">
