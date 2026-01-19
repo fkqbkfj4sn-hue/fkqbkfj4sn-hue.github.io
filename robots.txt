@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://fkqbkfj4sn-hue.github.io/sitemap.xml
